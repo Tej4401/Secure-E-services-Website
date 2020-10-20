@@ -6,19 +6,21 @@ var User = require('../models/user.js');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 var MONGO_URI = "mongodb+srv://tej:tpa4401@first-bvv78.gcp.mongodb.net/school?retryWrites=true&w=majority";
-mongoose
-  .connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('DATABASE connected Properly!'))
-  .catch((err) => console.log('Error is ', err.message));
+// mongoose
+//   .connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+//   .then(() => console.log('DATABASE connected Properly!'))
+//   .catch((err) => console.log('Error is ', err.message));
 
 const router = express.Router();
 
 function randomInt(low, high) {
     return Math.floor(Math.random() * (high - low) + low)
   }
-  
 
 router.post('/login', (req, res) => {
+  if(!req.session.isLoggedIn){
+    res.redirect('/');
+  }
     const obj = JSON.parse(JSON.stringify(req.body))
     console.log(obj);
     User.find({ name: obj.name, password: obj.password })
@@ -71,12 +73,8 @@ router.post('/login', (req, res) => {
     User.find({ name: obj.name})
       .then((user) => {
         if (user[0].password == req.body.password) {
-          // res.cookie('loggedIn', req.body.rollno, {
-          //   httpOnly: true
-          // });
-          // res.cookie('log', true, {
-          //     httpOnly: true
-          // });
+          req.session.name = user[0].name;
+          req.session.isLoggedIn = false;
           console.log(user);
           res.render('signin', {
             file1: files[a[0]],
@@ -107,13 +105,17 @@ router.post('/login', (req, res) => {
       const obj = JSON.parse(JSON.stringify(req.body))
         console.log(obj);
       if (obj.file6 == "true" && obj.file7 == "true" && obj.file8 == "true" && obj.file9 == "true" && obj.file10 == "true" && obj.file1 != "true" && obj.file2 != "true" && obj.file3 != "true" && obj.file4 != "true" && obj.file5 != "true"){
-            res.render('home');            
+        req.session.isLoggedIn = true;
+        res.render('home');
     }
       else{
         res.render('form');
       }
     })
     router.get('/news',(req,res) => {
+      if(!req.session.isLoggedIn){
+        res.redirect('/');
+      }
         res.render('news');
     })
 module.exports = router;
