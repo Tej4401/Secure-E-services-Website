@@ -10,7 +10,7 @@ var User = mongoose.Schema(
         pic3: String,
         pic4: String,
         pic5: String,
-        files: [String]
+        files: [{path: String, name: String}]
     }
 );
 module.exports = mongoose.model('User', User)

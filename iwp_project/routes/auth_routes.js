@@ -1,11 +1,5 @@
 const express = require('express');
-const multer = require('multer');
-const ejs = require('ejs');
-const path = require('path');
 var User = require('../models/user.js');
-const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
-
 const router = express.Router();
 
 function randomInt(low, high) {
@@ -13,11 +7,10 @@ function randomInt(low, high) {
   }
 
 router.post('/login', (req, res) => {
-  if(!req.session.isLoggedIn){
-    res.redirect('/');
-  }
     const obj = JSON.parse(JSON.stringify(req.body))
     console.log(obj);
+    req.session.name = obj.name;
+    req.session.isLoggedIn = false;
     User.find({ name: obj.name, password: obj.password })
       .then((user) => {
         if (user.length == 0) {

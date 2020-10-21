@@ -1,10 +1,7 @@
 const express = require('express');
 const multer = require('multer');
-const ejs = require('ejs');
 const path = require('path');
 var User = require('../models/user.js');
-const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
 
 const router = express.Router();
 
@@ -58,8 +55,7 @@ router.post('/upload',(req,res) => {
           
           var update = { pic1: req.file.filename}
           console.log(req.file.filename);
-          console.log(n);
-          User.updateOne({ name: n,password:p }, update)
+          User.updateOne({ name: req.session.name, }, update)
             .then((profile) => {
               // console.log(profile)
             })
@@ -96,9 +92,8 @@ router.post('/upload',(req,res) => {
             vis1: 'hide'
           });
           console.log(req.file.filename);
-          console.log(n);
           var update = { pic2: req.file.filename }
-          User.updateOne({ name: n, password: p }, update)
+          User.updateOne({ name: req.session.name, }, update)
             .then((profile) => {
               // console.log(profile)
             })
@@ -129,7 +124,7 @@ router.post('/upload',(req,res) => {
             vis1: 'hide'
           });
           var update = { pic3: req.file.filename }
-          User.updateOne({ name: n, password: p }, update)
+          User.updateOne({ name: req.session.name, }, update)
             .then((profile) => {
               // console.log(profile)
             })
@@ -160,7 +155,7 @@ router.post('/upload',(req,res) => {
             vis1: 'hide'
           });
           var update = { pic4: req.file.filename }
-          User.updateOne({ name: n, password: p }, update)
+          User.updateOne({ name: req.session.name }, update)
             .then((profile) => {
               // console.log(profile)
             })
@@ -191,7 +186,7 @@ router.post('/upload',(req,res) => {
             vis1: 'hide'
           });
           var update = { pic5: req.file.filename}
-          User.updateOne({ name: n, password: p }, update)
+          User.updateOne({ name: req.session.name }, update)
             .then((profile) => {
               // console.log(profile)
             })

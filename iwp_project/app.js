@@ -3,10 +3,11 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const session = require('express-session');
-var MONGO_URI = "mongodb+srv://tej:tpa4401@first-bvv78.gcp.mongodb.net/school?retryWrites=true&w=majority";
-
 const upload_routes = require('./routes/upload_routes');
 const auth_routes = require('./routes/auth_routes');
+const content_management_routes = require('./routes/content_management_routes.js')
+
+var MONGO_URI = "mongodb+srv://tej:tpa4401@first-bvv78.gcp.mongodb.net/school?retryWrites=true&w=majority";
 
 mongoose
   .connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -23,11 +24,12 @@ app.set('view engine', 'ejs');
 
 // Public Folder
 app.use(express.static(path.join(__dirname,'public')));
-app.use(session({secret:'7g3f9q80hfj10b8hf3b12n08b1cbeu3',resave:false, saveUninitialized:false}))
-
+app.use(session({secret:'7g3f9q80hfj10b8hf3b12n08b1cbeu3',resave:false, saveUninitialized:false, cookie:{ }}))
 app.use(auth_routes);
 app.use(upload_routes);
+app.use(content_management_routes)
 app.get('/', (req, res) => res.render('index'));
+app.get('/home', (req, res) => res.render('home'));
 
 const port = 3000;
 

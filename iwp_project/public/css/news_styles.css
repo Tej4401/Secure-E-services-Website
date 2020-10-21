@@ -1,8 +1,25 @@
-@charset "utf-8";
+  .navigation{
+	color:white;
+	background-color: rgba(255,255,255,0.1);
+	overflow: hidden;
+	margin: 10px 10px;
+  }
+  .navigation a {
+	float: left;
+	color:cadetblue;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+	font-size: 25px;
+  }
+  .navigation a:hover {
+	color: green;
+  }
+/* @charset "utf-8";
 * {
 	margin:0;
 	padding:0;
-}
+} */
 a {
 	text-decoration:none;
 	color:#e63636;
@@ -38,8 +55,7 @@ body sytles start
 -------------------------------------------------*/
 
 body {
-	background:url(../images/body-bg.png);
-	font-family: 'Ubuntu Condensed', sans-serif;
+	background-color: black;
 	font-size:15px;
 	color:#fff;
 	line-height:20px;
@@ -49,7 +65,7 @@ body {
 	height:auto;
 	margin:0 auto;
 	text-align:left;
-	background: skyblue;
+	background: black;
 }
 
 /*-----------------
@@ -160,7 +176,7 @@ General Page Styles Start
 .page {
 	width:920px;
 	margin:0 auto;
-	background:url(../images/page-bg.png);
+	background-color:black;
 	padding:20px;
 	overflow:auto;
 }
