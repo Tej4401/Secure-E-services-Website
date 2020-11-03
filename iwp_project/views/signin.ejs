@@ -81,6 +81,7 @@
     <form action="/auth" method="POST" enctype="application/json">
     <div class="row">
     <div class="column">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
     <input type="checkbox" id="file1" name="file1" value="true">
     <label for="file1"> <img src=./uploads/<%= file1 %> height="100px" width="200px"></label>
         </div><div class="column">

@@ -15,6 +15,7 @@
         <h1>LOGIN</h1>
         <%= typeof msg != 'undefined' ? msg : '' %>
         <form action="/signin" method="POST" enctype="application/json">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
             <div class="form-group">
                 <div class="form-group"><label>USERNAME: &nbsp;</label><input type="text" class="form-control-sm"
                         placeholder="username" name="name" id="name" required><br></div>
@@ -27,7 +28,7 @@
                 document.getElementById("image").className = "show";
             }
         </script>
-            <h3>Don't have an account?</h3><a href="/">SignUp</a>
+            <h3>Don't have an account?</h3><a href="/index">SignUp</a>
         <style>
             .hide {
                 display: none;

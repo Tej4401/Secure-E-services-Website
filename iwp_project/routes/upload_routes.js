@@ -43,13 +43,15 @@ router.post('/upload',(req,res) => {
       if (err) {
         res.render('index', {
           msg: err,
-          vis1:'hide'
+          vis1:'hide',
+          csrfToken: req.csrfToken()
         });
       } else {
         if (req.file == undefined) {
           res.render('index', {
             msg: 'Error: No File Selected!',
-            vis1:'hide'
+            vis1:'hide',
+            csrfToken: req.csrfToken()
           });
         } else {
           
@@ -66,7 +68,8 @@ router.post('/upload',(req,res) => {
           res.render('img2', {
             msg: 'File Uploaded!',
             file: `uploads/${req.file.filename}`,
-            vis1: 'hide'
+            vis1: 'hide',
+            csrfToken: req.csrfToken()
           });
         }
       }
@@ -77,19 +80,22 @@ router.post('/upload',(req,res) => {
       if (err) {
         res.render('index', {
           msg: err,
-          vis1: 'hide'
+          vis1: 'hide',
+          csrfToken: req.csrfToken()
         });
       } else {
         if (req.file == undefined) {
           res.render('index', {
             msg: 'Error: No File Selected!',
-            vis1: 'hide'
+            vis1: 'hide',
+            csrfToken: req.csrfToken()
           });
         } else {
           res.render('img3', {
             msg: 'File Uploaded!',
             file: `uploads/${req.file.filename}`,
-            vis1: 'hide'
+            vis1: 'hide',
+            csrfToken: req.csrfToken()
           });
           console.log(req.file.filename);
           var update = { pic2: req.file.filename }
@@ -115,13 +121,15 @@ router.post('/upload',(req,res) => {
         if (req.file == undefined) {
           res.render('index', {
             msg: 'Error: No File Selected!',
-            vis1: 'hide'
+            vis1: 'hide',
+            csrfToken: req.csrfToken()
           });
         } else {
           res.render('img4', {
             msg: 'File Uploaded!',
             file: `uploads/${req.file.filename}`,
-            vis1: 'hide'
+            vis1: 'hide',
+            csrfToken: req.csrfToken()
           });
           var update = { pic3: req.file.filename }
           User.updateOne({ name: req.session.name, }, update)
@@ -140,19 +148,22 @@ router.post('/upload',(req,res) => {
       if (err) {
         res.render('index', {
           msg: err,
-          vis1: 'hide'
+          vis1: 'hide',
+          csrfToken: req.csrfToken()
         });
       } else {
         if (req.file == undefined) {
           res.render('index', {
             msg: 'Error: No File Selected!',
-            vis1: 'hide'
+            vis1: 'hide',
+            csrfToken: req.csrfToken()
           });
         } else {
           res.render('img5', {
             msg: 'File Uploaded!',
             file: `uploads/${req.file.filename}`,
-            vis1: 'hide'
+            vis1: 'hide',
+            csrfToken: req.csrfToken()
           });
           var update = { pic4: req.file.filename }
           User.updateOne({ name: req.session.name }, update)
@@ -171,19 +182,22 @@ router.post('/upload',(req,res) => {
       if (err) {
         res.render('index', {
           msg: err,
-          vis1: 'hide'
+          vis1: 'hide',
+          csrfToken: req.csrfToken()
         });
       } else {
         if (req.file == undefined) {
           res.render('index', {
             msg: 'Error: No File Selected!',
-            vis1: 'hide'
+            vis1: 'hide',
+            csrfToken: req.csrfToken()
           });
         } else {
           res.render('index', {
             msg: 'File Uploaded!',
             file: `uploads/${req.file.filename}`,
-            vis1: 'hide'
+            vis1: 'hide',
+            csrfToken: req.csrfToken()
           });
           var update = { pic5: req.file.filename}
           User.updateOne({ name: req.session.name }, update)
